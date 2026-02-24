@@ -222,9 +222,11 @@ class StoreProvider extends ChangeNotifier {
     final idx = _stores.indexWhere((s) => s.id == storeId);
     if (idx != -1) {
       final store = _stores[idx];
-      final allRatings = getReviewsForStore(storeId).map((r) => r.rating);
-      final newRating =
-          allRatings.reduce((a, b) => a + b) / allRatings.length;
+      final allRatings =
+          getReviewsForStore(storeId).map((r) => r.rating).toList();
+      final newRating = allRatings.isEmpty
+          ? 0.0
+          : allRatings.reduce((a, b) => a + b) / allRatings.length;
       _stores[idx] = store.copyWith(
         rating: double.parse(newRating.toStringAsFixed(1)),
         reviewCount: store.reviewCount + 1,

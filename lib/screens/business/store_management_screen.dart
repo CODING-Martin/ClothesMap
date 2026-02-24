@@ -77,7 +77,7 @@ class _StoreManagementScreenState extends State<StoreManagementScreen> {
         description: _descriptionCtrl.text.trim(),
         address: _addressCtrl.text.trim(),
         latitude: AppConstants.defaultLatitude + (0.01 * (DateTime.now().millisecond % 10)),
-        longitude: AppConstants.defaultLongitude + (0.01 * (DateTime.now().millisecond % 10)),
+        longitude: AppConstants.defaultLongitude + (0.01 * ((DateTime.now().millisecond ~/ 3) % 10)),
         phone: _phoneCtrl.text.trim(),
         website: _websiteCtrl.text.trim().isEmpty
             ? null
